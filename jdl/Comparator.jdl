@@ -1,9 +1,9 @@
 
 entity WsRequestsStateJSON {
 	requestId Long
-	index Integer
+	requestIdx Integer
     cmdListJson TextBlob
-    system String
+    srcSystem String
     created Instant
 }
 

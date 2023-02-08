@@ -1,13 +1,13 @@
 import {
-  entityTableSelector,
-  entityDetailsButtonSelector,
-  entityDetailsBackButtonSelector,
-  entityCreateButtonSelector,
-  entityCreateSaveButtonSelector,
-  entityCreateCancelButtonSelector,
-  entityEditButtonSelector,
-  entityDeleteButtonSelector,
   entityConfirmDeleteButtonSelector,
+  entityCreateButtonSelector,
+  entityCreateCancelButtonSelector,
+  entityCreateSaveButtonSelector,
+  entityDeleteButtonSelector,
+  entityDetailsBackButtonSelector,
+  entityDetailsButtonSelector,
+  entityEditButtonSelector,
+  entityTableSelector,
 } from '../../support/entity';
 
 describe('WsRequestsStateJSON e2e test', () => {
@@ -159,14 +159,14 @@ describe('WsRequestsStateJSON e2e test', () => {
     it('should create an instance of WsRequestsStateJSON', () => {
       cy.get(`[data-cy="requestId"]`).type('4133').should('have.value', '4133');
 
-      cy.get(`[data-cy="index"]`).type('14232').should('have.value', '14232');
+      cy.get(`[data-cy="requestIdx"]`).type('14232').should('have.value', '14232');
 
       cy.get(`[data-cy="cmdListJson"]`)
         .type('../fake-data/blob/hipster.txt')
         .invoke('val')
         .should('match', new RegExp('../fake-data/blob/hipster.txt'));
 
-      cy.get(`[data-cy="system"]`).type('matrix unleash').should('have.value', 'matrix unleash');
+      cy.get(`[data-cy="srcSystem"]`).type('matrix unleash').should('have.value', 'matrix unleash');
 
       cy.get(`[data-cy="created"]`).type('2023-02-07T01:15').blur().should('have.value', '2023-02-07T01:15');
 

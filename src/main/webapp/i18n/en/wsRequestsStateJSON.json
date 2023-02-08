@@ -19,9 +19,9 @@
       },
       "id": "ID",
       "requestId": "Request Id",
-      "index": "Index",
+      "requestIdx": "Request Idx",
       "cmdListJson": "Cmd List Json",
-      "system": "System",
+      "srcSystem": "Src System",
       "created": "Created"
     }
   }

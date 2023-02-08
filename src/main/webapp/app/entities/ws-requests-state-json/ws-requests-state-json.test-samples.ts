@@ -13,9 +13,9 @@ export const sampleWithPartialData: IWsRequestsStateJSON = {
 export const sampleWithFullData: IWsRequestsStateJSON = {
   id: 95435,
   requestId: 28896,
-  index: 34821,
+  requestIdx: 34821,
   cmdListJson: '../fake-data/blob/hipster.txt',
-  system: 'hacking Fuerte Car',
+  srcSystem: 'hacking Fuerte Car',
   created: dayjs('2023-02-07T08:42'),
 };
 

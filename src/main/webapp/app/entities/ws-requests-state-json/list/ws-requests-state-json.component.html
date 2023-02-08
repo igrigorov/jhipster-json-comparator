@@ -44,9 +44,9 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="index">
+          <th scope="col" jhiSortBy="requestIdx">
             <div class="d-flex">
-              <span jhiTranslate="responseComparatorApp.wsRequestsStateJSON.index">Index</span>
+              <span jhiTranslate="responseComparatorApp.wsRequestsStateJSON.requestIdx">Request Idx</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -56,9 +56,9 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="system">
+          <th scope="col" jhiSortBy="srcSystem">
             <div class="d-flex">
-              <span jhiTranslate="responseComparatorApp.wsRequestsStateJSON.system">System</span>
+              <span jhiTranslate="responseComparatorApp.wsRequestsStateJSON.srcSystem">Src System</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -77,9 +77,9 @@
             <a [routerLink]="['/ws-requests-state-json', wsRequestsStateJSON.id, 'view']">{{ wsRequestsStateJSON.id }}</a>
           </td>
           <td>{{ wsRequestsStateJSON.requestId }}</td>
-          <td>{{ wsRequestsStateJSON.index }}</td>
+          <td>{{ wsRequestsStateJSON.requestIdx }}</td>
           <td>{{ wsRequestsStateJSON.cmdListJson }}</td>
-          <td>{{ wsRequestsStateJSON.system }}</td>
+          <td>{{ wsRequestsStateJSON.srcSystem }}</td>
           <td>{{ wsRequestsStateJSON.created | formatMediumDatetime }}</td>
           <td class="text-end">
             <div class="btn-group">

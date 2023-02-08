@@ -72,9 +72,9 @@ class WsRequestsStateJSONGatlingTest extends Simulation {
             .headers(headers_http_authenticated)
             .body(StringBody("""{
                 "requestId":"0"
-                , "index":"0"
+                , "requestIdx":"0"
                 , "cmdListJson":null
-                , "system":"SAMPLE_TEXT"
+                , "srcSystem":"SAMPLE_TEXT"
                 , "created":"2020-01-01T00:00:00.000Z"
                 }""")).asJson
             .check(status.is(201))

@@ -127,14 +127,14 @@ public class WsRequestsStateJSONResource {
                 if (wsRequestsStateJSON.getRequestId() != null) {
                     existingWsRequestsStateJSON.setRequestId(wsRequestsStateJSON.getRequestId());
                 }
-                if (wsRequestsStateJSON.getIndex() != null) {
-                    existingWsRequestsStateJSON.setIndex(wsRequestsStateJSON.getIndex());
+                if (wsRequestsStateJSON.getRequestIdx() != null) {
+                    existingWsRequestsStateJSON.setRequestIdx(wsRequestsStateJSON.getRequestIdx());
                 }
                 if (wsRequestsStateJSON.getCmdListJson() != null) {
                     existingWsRequestsStateJSON.setCmdListJson(wsRequestsStateJSON.getCmdListJson());
                 }
-                if (wsRequestsStateJSON.getSystem() != null) {
-                    existingWsRequestsStateJSON.setSystem(wsRequestsStateJSON.getSystem());
+                if (wsRequestsStateJSON.getSrcSystem() != null) {
+                    existingWsRequestsStateJSON.setSrcSystem(wsRequestsStateJSON.getSrcSystem());
                 }
                 if (wsRequestsStateJSON.getCreated() != null) {
                     existingWsRequestsStateJSON.setCreated(wsRequestsStateJSON.getCreated());

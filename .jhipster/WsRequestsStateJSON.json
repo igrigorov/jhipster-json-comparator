@@ -10,7 +10,7 @@
       "fieldType": "Long"
     },
     {
-      "fieldName": "index",
+      "fieldName": "requestIdx",
       "fieldType": "Integer"
     },
     {
@@ -19,7 +19,7 @@
       "fieldTypeBlobContent": "text"
     },
     {
-      "fieldName": "system",
+      "fieldName": "srcSystem",
       "fieldType": "String"
     },
     {

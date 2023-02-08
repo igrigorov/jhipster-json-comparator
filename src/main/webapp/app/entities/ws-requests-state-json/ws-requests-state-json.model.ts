@@ -3,9 +3,9 @@ import dayjs from 'dayjs/esm';
 export interface IWsRequestsStateJSON {
   id: number;
   requestId?: number | null;
-  index?: number | null;
+  requestIdx?: number | null;
   cmdListJson?: string | null;
-  system?: string | null;
+  srcSystem?: string | null;
   created?: dayjs.Dayjs | null;
 }
 

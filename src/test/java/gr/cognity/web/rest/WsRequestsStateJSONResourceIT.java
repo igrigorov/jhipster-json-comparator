@@ -22,7 +22,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Base64Utils;
 
 /**
  * Integration tests for the {@link WsRequestsStateJSONResource} REST controller.
@@ -35,14 +34,14 @@ class WsRequestsStateJSONResourceIT {
     private static final Long DEFAULT_REQUEST_ID = 1L;
     private static final Long UPDATED_REQUEST_ID = 2L;
 
-    private static final Integer DEFAULT_INDEX = 1;
-    private static final Integer UPDATED_INDEX = 2;
+    private static final Integer DEFAULT_REQUEST_IDX = 1;
+    private static final Integer UPDATED_REQUEST_IDX = 2;
 
     private static final String DEFAULT_CMD_LIST_JSON = "AAAAAAAAAA";
     private static final String UPDATED_CMD_LIST_JSON = "BBBBBBBBBB";
 
-    private static final String DEFAULT_SYSTEM = "AAAAAAAAAA";
-    private static final String UPDATED_SYSTEM = "BBBBBBBBBB";
+    private static final String DEFAULT_SRC_SYSTEM = "AAAAAAAAAA";
+    private static final String UPDATED_SRC_SYSTEM = "BBBBBBBBBB";
 
     private static final Instant DEFAULT_CREATED = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_CREATED = Instant.now().truncatedTo(ChronoUnit.MILLIS);
@@ -73,9 +72,9 @@ class WsRequestsStateJSONResourceIT {
     public static WsRequestsStateJSON createEntity(EntityManager em) {
         WsRequestsStateJSON wsRequestsStateJSON = new WsRequestsStateJSON()
             .requestId(DEFAULT_REQUEST_ID)
-            .index(DEFAULT_INDEX)
+            .requestIdx(DEFAULT_REQUEST_IDX)
             .cmdListJson(DEFAULT_CMD_LIST_JSON)
-            .system(DEFAULT_SYSTEM)
+            .srcSystem(DEFAULT_SRC_SYSTEM)
             .created(DEFAULT_CREATED);
         return wsRequestsStateJSON;
     }
@@ -89,9 +88,9 @@ class WsRequestsStateJSONResourceIT {
     public static WsRequestsStateJSON createUpdatedEntity(EntityManager em) {
         WsRequestsStateJSON wsRequestsStateJSON = new WsRequestsStateJSON()
             .requestId(UPDATED_REQUEST_ID)
-            .index(UPDATED_INDEX)
+            .requestIdx(UPDATED_REQUEST_IDX)
             .cmdListJson(UPDATED_CMD_LIST_JSON)
-            .system(UPDATED_SYSTEM)
+            .srcSystem(UPDATED_SRC_SYSTEM)
             .created(UPDATED_CREATED);
         return wsRequestsStateJSON;
     }
@@ -117,9 +116,9 @@ class WsRequestsStateJSONResourceIT {
         assertThat(wsRequestsStateJSONList).hasSize(databaseSizeBeforeCreate + 1);
         WsRequestsStateJSON testWsRequestsStateJSON = wsRequestsStateJSONList.get(wsRequestsStateJSONList.size() - 1);
         assertThat(testWsRequestsStateJSON.getRequestId()).isEqualTo(DEFAULT_REQUEST_ID);
-        assertThat(testWsRequestsStateJSON.getIndex()).isEqualTo(DEFAULT_INDEX);
+        assertThat(testWsRequestsStateJSON.getRequestIdx()).isEqualTo(DEFAULT_REQUEST_IDX);
         assertThat(testWsRequestsStateJSON.getCmdListJson()).isEqualTo(DEFAULT_CMD_LIST_JSON);
-        assertThat(testWsRequestsStateJSON.getSystem()).isEqualTo(DEFAULT_SYSTEM);
+        assertThat(testWsRequestsStateJSON.getSrcSystem()).isEqualTo(DEFAULT_SRC_SYSTEM);
         assertThat(testWsRequestsStateJSON.getCreated()).isEqualTo(DEFAULT_CREATED);
     }
 
@@ -156,9 +155,9 @@ class WsRequestsStateJSONResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(wsRequestsStateJSON.getId().intValue())))
             .andExpect(jsonPath("$.[*].requestId").value(hasItem(DEFAULT_REQUEST_ID.intValue())))
-            .andExpect(jsonPath("$.[*].index").value(hasItem(DEFAULT_INDEX)))
+            .andExpect(jsonPath("$.[*].requestIdx").value(hasItem(DEFAULT_REQUEST_IDX)))
             .andExpect(jsonPath("$.[*].cmdListJson").value(hasItem(DEFAULT_CMD_LIST_JSON.toString())))
-            .andExpect(jsonPath("$.[*].system").value(hasItem(DEFAULT_SYSTEM)))
+            .andExpect(jsonPath("$.[*].srcSystem").value(hasItem(DEFAULT_SRC_SYSTEM)))
             .andExpect(jsonPath("$.[*].created").value(hasItem(DEFAULT_CREATED.toString())));
     }
 
@@ -175,9 +174,9 @@ class WsRequestsStateJSONResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(wsRequestsStateJSON.getId().intValue()))
             .andExpect(jsonPath("$.requestId").value(DEFAULT_REQUEST_ID.intValue()))
-            .andExpect(jsonPath("$.index").value(DEFAULT_INDEX))
+            .andExpect(jsonPath("$.requestIdx").value(DEFAULT_REQUEST_IDX))
             .andExpect(jsonPath("$.cmdListJson").value(DEFAULT_CMD_LIST_JSON.toString()))
-            .andExpect(jsonPath("$.system").value(DEFAULT_SYSTEM))
+            .andExpect(jsonPath("$.srcSystem").value(DEFAULT_SRC_SYSTEM))
             .andExpect(jsonPath("$.created").value(DEFAULT_CREATED.toString()));
     }
 
@@ -202,9 +201,9 @@ class WsRequestsStateJSONResourceIT {
         em.detach(updatedWsRequestsStateJSON);
         updatedWsRequestsStateJSON
             .requestId(UPDATED_REQUEST_ID)
-            .index(UPDATED_INDEX)
+            .requestIdx(UPDATED_REQUEST_IDX)
             .cmdListJson(UPDATED_CMD_LIST_JSON)
-            .system(UPDATED_SYSTEM)
+            .srcSystem(UPDATED_SRC_SYSTEM)
             .created(UPDATED_CREATED);
 
         restWsRequestsStateJSONMockMvc
@@ -220,9 +219,9 @@ class WsRequestsStateJSONResourceIT {
         assertThat(wsRequestsStateJSONList).hasSize(databaseSizeBeforeUpdate);
         WsRequestsStateJSON testWsRequestsStateJSON = wsRequestsStateJSONList.get(wsRequestsStateJSONList.size() - 1);
         assertThat(testWsRequestsStateJSON.getRequestId()).isEqualTo(UPDATED_REQUEST_ID);
-        assertThat(testWsRequestsStateJSON.getIndex()).isEqualTo(UPDATED_INDEX);
+        assertThat(testWsRequestsStateJSON.getRequestIdx()).isEqualTo(UPDATED_REQUEST_IDX);
         assertThat(testWsRequestsStateJSON.getCmdListJson()).isEqualTo(UPDATED_CMD_LIST_JSON);
-        assertThat(testWsRequestsStateJSON.getSystem()).isEqualTo(UPDATED_SYSTEM);
+        assertThat(testWsRequestsStateJSON.getSrcSystem()).isEqualTo(UPDATED_SRC_SYSTEM);
         assertThat(testWsRequestsStateJSON.getCreated()).isEqualTo(UPDATED_CREATED);
     }
 
@@ -311,9 +310,9 @@ class WsRequestsStateJSONResourceIT {
         assertThat(wsRequestsStateJSONList).hasSize(databaseSizeBeforeUpdate);
         WsRequestsStateJSON testWsRequestsStateJSON = wsRequestsStateJSONList.get(wsRequestsStateJSONList.size() - 1);
         assertThat(testWsRequestsStateJSON.getRequestId()).isEqualTo(UPDATED_REQUEST_ID);
-        assertThat(testWsRequestsStateJSON.getIndex()).isEqualTo(DEFAULT_INDEX);
+        assertThat(testWsRequestsStateJSON.getRequestIdx()).isEqualTo(DEFAULT_REQUEST_IDX);
         assertThat(testWsRequestsStateJSON.getCmdListJson()).isEqualTo(DEFAULT_CMD_LIST_JSON);
-        assertThat(testWsRequestsStateJSON.getSystem()).isEqualTo(DEFAULT_SYSTEM);
+        assertThat(testWsRequestsStateJSON.getSrcSystem()).isEqualTo(DEFAULT_SRC_SYSTEM);
         assertThat(testWsRequestsStateJSON.getCreated()).isEqualTo(UPDATED_CREATED);
     }
 
@@ -331,9 +330,9 @@ class WsRequestsStateJSONResourceIT {
 
         partialUpdatedWsRequestsStateJSON
             .requestId(UPDATED_REQUEST_ID)
-            .index(UPDATED_INDEX)
+            .requestIdx(UPDATED_REQUEST_IDX)
             .cmdListJson(UPDATED_CMD_LIST_JSON)
-            .system(UPDATED_SYSTEM)
+            .srcSystem(UPDATED_SRC_SYSTEM)
             .created(UPDATED_CREATED);
 
         restWsRequestsStateJSONMockMvc
@@ -349,9 +348,9 @@ class WsRequestsStateJSONResourceIT {
         assertThat(wsRequestsStateJSONList).hasSize(databaseSizeBeforeUpdate);
         WsRequestsStateJSON testWsRequestsStateJSON = wsRequestsStateJSONList.get(wsRequestsStateJSONList.size() - 1);
         assertThat(testWsRequestsStateJSON.getRequestId()).isEqualTo(UPDATED_REQUEST_ID);
-        assertThat(testWsRequestsStateJSON.getIndex()).isEqualTo(UPDATED_INDEX);
+        assertThat(testWsRequestsStateJSON.getRequestIdx()).isEqualTo(UPDATED_REQUEST_IDX);
         assertThat(testWsRequestsStateJSON.getCmdListJson()).isEqualTo(UPDATED_CMD_LIST_JSON);
-        assertThat(testWsRequestsStateJSON.getSystem()).isEqualTo(UPDATED_SYSTEM);
+        assertThat(testWsRequestsStateJSON.getSrcSystem()).isEqualTo(UPDATED_SRC_SYSTEM);
         assertThat(testWsRequestsStateJSON.getCreated()).isEqualTo(UPDATED_CREATED);
     }
 

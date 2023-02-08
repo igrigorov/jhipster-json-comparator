@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import dayjs from 'dayjs/esm';
 import { DATE_TIME_FORMAT } from 'app/config/input.constants';
@@ -32,9 +32,9 @@ type WsRequestsStateJSONFormDefaults = Pick<NewWsRequestsStateJSON, 'id' | 'crea
 type WsRequestsStateJSONFormGroupContent = {
   id: FormControl<WsRequestsStateJSONFormRawValue['id'] | NewWsRequestsStateJSON['id']>;
   requestId: FormControl<WsRequestsStateJSONFormRawValue['requestId']>;
-  index: FormControl<WsRequestsStateJSONFormRawValue['index']>;
+  requestIdx: FormControl<WsRequestsStateJSONFormRawValue['requestIdx']>;
   cmdListJson: FormControl<WsRequestsStateJSONFormRawValue['cmdListJson']>;
-  system: FormControl<WsRequestsStateJSONFormRawValue['system']>;
+  srcSystem: FormControl<WsRequestsStateJSONFormRawValue['srcSystem']>;
   created: FormControl<WsRequestsStateJSONFormRawValue['created']>;
 };
 
@@ -56,9 +56,9 @@ export class WsRequestsStateJSONFormService {
         }
       ),
       requestId: new FormControl(wsRequestsStateJSONRawValue.requestId),
-      index: new FormControl(wsRequestsStateJSONRawValue.index),
+      requestIdx: new FormControl(wsRequestsStateJSONRawValue.requestIdx),
       cmdListJson: new FormControl(wsRequestsStateJSONRawValue.cmdListJson),
-      system: new FormControl(wsRequestsStateJSONRawValue.system),
+      srcSystem: new FormControl(wsRequestsStateJSONRawValue.srcSystem),
       created: new FormControl(wsRequestsStateJSONRawValue.created),
     });
   }

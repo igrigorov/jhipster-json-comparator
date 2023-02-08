@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { sampleWithRequiredData, sampleWithNewData } from '../ws-requests-state-json.test-samples';
+import { sampleWithNewData, sampleWithRequiredData } from '../ws-requests-state-json.test-samples';
 
 import { WsRequestsStateJSONFormService } from './ws-requests-state-json-form.service';
 
@@ -21,9 +21,9 @@ describe('WsRequestsStateJSON Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             requestId: expect.any(Object),
-            index: expect.any(Object),
+            requestIdx: expect.any(Object),
             cmdListJson: expect.any(Object),
-            system: expect.any(Object),
+            srcSystem: expect.any(Object),
             created: expect.any(Object),
           })
         );
@@ -36,9 +36,9 @@ describe('WsRequestsStateJSON Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             requestId: expect.any(Object),
-            index: expect.any(Object),
+            requestIdx: expect.any(Object),
             cmdListJson: expect.any(Object),
-            system: expect.any(Object),
+            srcSystem: expect.any(Object),
             created: expect.any(Object),
           })
         );

@@ -26,15 +26,15 @@ public class WsRequestsStateJSON implements Serializable {
     @Column(name = "request_id")
     private Long requestId;
 
-    @Column(name = "jhi_index")
-    private Integer index;
+    @Column(name = "request_idx")
+    private Integer requestIdx;
 
     @Lob
     @Column(name = "cmd_list_json")
     private String cmdListJson;
 
-    @Column(name = "jhi_system")
-    private String system;
+    @Column(name = "src_system")
+    private String srcSystem;
 
     @Column(name = "created")
     private Instant created;
@@ -67,17 +67,17 @@ public class WsRequestsStateJSON implements Serializable {
         this.requestId = requestId;
     }
 
-    public Integer getIndex() {
-        return this.index;
+    public Integer getRequestIdx() {
+        return this.requestIdx;
     }
 
-    public WsRequestsStateJSON index(Integer index) {
-        this.setIndex(index);
+    public WsRequestsStateJSON requestIdx(Integer requestIdx) {
+        this.setRequestIdx(requestIdx);
         return this;
     }
 
-    public void setIndex(Integer index) {
-        this.index = index;
+    public void setRequestIdx(Integer requestIdx) {
+        this.requestIdx = requestIdx;
     }
 
     public String getCmdListJson() {
@@ -93,17 +93,17 @@ public class WsRequestsStateJSON implements Serializable {
         this.cmdListJson = cmdListJson;
     }
 
-    public String getSystem() {
-        return this.system;
+    public String getSrcSystem() {
+        return this.srcSystem;
     }
 
-    public WsRequestsStateJSON system(String system) {
-        this.setSystem(system);
+    public WsRequestsStateJSON srcSystem(String srcSystem) {
+        this.setSrcSystem(srcSystem);
         return this;
     }
 
-    public void setSystem(String system) {
-        this.system = system;
+    public void setSrcSystem(String srcSystem) {
+        this.srcSystem = srcSystem;
     }
 
     public Instant getCreated() {
@@ -144,9 +144,9 @@ public class WsRequestsStateJSON implements Serializable {
         return "WsRequestsStateJSON{" +
             "id=" + getId() +
             ", requestId=" + getRequestId() +
-            ", index=" + getIndex() +
+            ", requestIdx=" + getRequestIdx() +
             ", cmdListJson='" + getCmdListJson() + "'" +
-            ", system='" + getSystem() + "'" +
+            ", srcSystem='" + getSrcSystem() + "'" +
             ", created='" + getCreated() + "'" +
             "}";
     }
