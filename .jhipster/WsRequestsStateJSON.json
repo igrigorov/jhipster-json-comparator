@@ -1,0 +1,37 @@
+{
+  "applications": "*",
+  "changelogDate": "20230207165629",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "ws_requests_state_json",
+  "fields": [
+    {
+      "fieldName": "requestId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "index",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "cmdListJson",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "system",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "created",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "WsRequestsStateJSON",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

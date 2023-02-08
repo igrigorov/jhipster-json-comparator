@@ -1,0 +1,28 @@
+{
+  "responseComparatorApp": {
+    "wsRequestsStateJSON": {
+      "home": {
+        "title": "Ws Requests State JSONS",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Δημιουργήστε ένα νέο Ws Requests State JSON",
+        "createOrEditLabel": "Δημιουργήστε η επεξεργαστείτε ένα Ws Requests State JSON",
+        "notFound": "No Ws Requests State JSONS found"
+      },
+      "created": "Ένα νέο Ws Requests State JSON έχει δημιουργηθεί με αναγνωριστικό {{ param }}",
+      "updated": "Ένα Ws Requests State JSON έχει ενημερωθεί με αναγνωριστικό {{ param }}",
+      "deleted": "Ένα Ws Requests State JSON έχει διαγραφτεί με αναγνωριστικό {{ param }}",
+      "delete": {
+        "question": "Είστε βέβαιοι όταν θέλετε να διαγράψετε το ακόλουθο Ws Requests State JSON {{ id }};"
+      },
+      "detail": {
+        "title": "Ws Requests State JSON"
+      },
+      "id": "ID",
+      "requestId": "Request Id",
+      "index": "Index",
+      "cmdListJson": "Cmd List Json",
+      "system": "System",
+      "created": "Created"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="wsRequestsStateJSON">
+      <h2 data-cy="wsRequestsStateJSONDetailsHeading">
+        <span jhiTranslate="responseComparatorApp.wsRequestsStateJSON.detail.title">Ws Requests State JSON</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ wsRequestsStateJSON.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="responseComparatorApp.wsRequestsStateJSON.requestId">Request Id</span></dt>
+        <dd>
+          <span>{{ wsRequestsStateJSON.requestId }}</span>
+        </dd>
+        <dt><span jhiTranslate="responseComparatorApp.wsRequestsStateJSON.index">Index</span></dt>
+        <dd>
+          <span>{{ wsRequestsStateJSON.index }}</span>
+        </dd>
+        <dt><span jhiTranslate="responseComparatorApp.wsRequestsStateJSON.cmdListJson">Cmd List Json</span></dt>
+        <dd>
+          <span>{{ wsRequestsStateJSON.cmdListJson }}</span>
+        </dd>
+        <dt><span jhiTranslate="responseComparatorApp.wsRequestsStateJSON.system">System</span></dt>
+        <dd>
+          <span>{{ wsRequestsStateJSON.system }}</span>
+        </dd>
+        <dt><span jhiTranslate="responseComparatorApp.wsRequestsStateJSON.created">Created</span></dt>
+        <dd>
+          <span>{{ wsRequestsStateJSON.created | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/ws-requests-state-json', wsRequestsStateJSON.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
