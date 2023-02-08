@@ -1,4 +1,4 @@
-package gr.cognity.service;
+package gr.cognity.exception;
 
 public class EmailAlreadyUsedException extends RuntimeException {
 

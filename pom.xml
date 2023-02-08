@@ -52,26 +52,28 @@
         <!-- The hibernate version should match the one managed by
         https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies/${spring-boot.version} -->
         <hibernate.version>5.6.10.Final</hibernate.version>
-        <!-- The liquibase version should match the one managed by
-        https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies/${spring-boot.version} -->
-        <liquibase.version>4.15.0</liquibase.version>
-        <liquibase-hibernate5.version>4.15.0</liquibase-hibernate5.version>
-        <validation-api.version>2.0.1.Final</validation-api.version>
-        <jaxb-runtime.version>4.0.0</jaxb-runtime.version>
-        <archunit-junit5.version>0.22.0</archunit-junit5.version>
-        <mapstruct.version>1.5.2.Final</mapstruct.version>
-        <!-- Lombok -->
-        <lombok.version>1.18.26</lombok.version>
+		<!-- The liquibase version should match the one managed by
+		https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies/${spring-boot.version} -->
+		<liquibase.version>4.15.0</liquibase.version>
+		<liquibase-hibernate5.version>4.15.0</liquibase-hibernate5.version>
+		<validation-api.version>2.0.1.Final</validation-api.version>
+		<jaxb-runtime.version>4.0.0</jaxb-runtime.version>
+		<archunit-junit5.version>0.22.0</archunit-junit5.version>
+		<mapstruct.version>1.5.2.Final</mapstruct.version>
+		<!-- Lombok -->
+		<lombok.version>1.18.26</lombok.version>
+		<zjsonpatch.version>0.4.14</zjsonpatch.version>
+		<json.compare.version>6.7</json.compare.version>
 
-        <!-- Plugin versions -->
-        <maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>
-        <maven-site-plugin.version>3.12.1</maven-site-plugin.version>
-        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
-        <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
-        <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
-        <maven-enforcer-plugin.version>3.1.0</maven-enforcer-plugin.version>
-        <maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>
-        <maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
+		<!-- Plugin versions -->
+		<maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>
+		<maven-site-plugin.version>3.12.1</maven-site-plugin.version>
+		<maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+		<maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
+		<maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
+		<maven-enforcer-plugin.version>3.1.0</maven-enforcer-plugin.version>
+		<maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>
+		<maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
         <maven-idea-plugin.version>2.2.1</maven-idea-plugin.version>
         <maven-resources-plugin.version>3.3.0</maven-resources-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
@@ -333,18 +335,31 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <scope>test</scope>
-        </dependency>
+			<scope>test</scope>
+		</dependency>
 
-        <!-- Lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <!-- jhipster-needle-maven-add-dependency -->
-    </dependencies>
+		<!-- Lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- zJSONPatch -->
+		<dependency>
+			<groupId>com.flipkart.zjsonpatch</groupId>
+			<artifactId>zjsonpatch</artifactId>
+			<version>${zjsonpatch.version}</version>
+		</dependency>
+		<!-- TODO ::: 2023-02-08 IG : Choose between the two JSON comparators -->
+		<dependency>
+			<groupId>com.github.fslev</groupId>
+			<artifactId>json-compare</artifactId>
+			<version>${json.compare.version}</version>
+		</dependency>
+
+		<!-- jhipster-needle-maven-add-dependency -->
+	</dependencies>
 
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>
