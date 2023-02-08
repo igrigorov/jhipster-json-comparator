@@ -1,0 +1,10 @@
+{
+  "field1": "One",
+  "field2": "Две",
+  "arrayField": [
+    {
+      "subField1": "SubZero",
+      "subField2": "SubTwo"
+    }
+  ]
+}

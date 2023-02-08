@@ -20,17 +20,19 @@
             </column>
             <column name="cmd_list_json" type="${clobType}">
                 <constraints nullable="true" />
-            </column>
-            <column name="src_system" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="created" type="${datetimeType}">
-                <constraints nullable="true" />
-            </column>
-            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
-        </createTable>
-        <dropDefaultValue tableName="ws_requests_state_json" columnName="created" columnDataType="${datetimeType}"/>
-    </changeSet>
+			</column>
+			<column name="src_system" type="varchar(255)">
+				<constraints nullable="true"/>
+			</column>
+			<column name="created" type="${datetimeType}">
+				<constraints nullable="true"/>
+			</column>
+			<!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+		</createTable>
+		<dropDefaultValue tableName="ws_requests_state_json" columnName="created" columnDataType="${datetimeType}"/>
+		<addUniqueConstraint tableName="ws_requests_state_json" columnNames="request_id, request_idx, src_system"
+			constraintName="ws_requests_state_json_uix_1"/>
+	</changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
 
