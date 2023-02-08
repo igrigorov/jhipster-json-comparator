@@ -4,15 +4,7 @@
       "home": {
         "title": "Ws Requests State JSONS",
         "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Ws Requests State JSON",
-        "createOrEditLabel": "Create or edit a Ws Requests State JSON",
         "notFound": "No Ws Requests State JSONS found"
-      },
-      "created": "A new Ws Requests State JSON is created with identifier {{ param }}",
-      "updated": "A Ws Requests State JSON is updated with identifier {{ param }}",
-      "deleted": "A Ws Requests State JSON is deleted with identifier {{ param }}",
-      "delete": {
-        "question": "Are you sure you want to delete Ws Requests State JSON {{ id }}?"
       },
       "detail": {
         "title": "Ws Requests State JSON"

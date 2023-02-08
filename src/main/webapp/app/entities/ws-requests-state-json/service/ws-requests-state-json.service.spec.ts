@@ -2,14 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { IWsRequestsStateJSON } from '../ws-requests-state-json.model';
-import {
-  sampleWithRequiredData,
-  sampleWithNewData,
-  sampleWithPartialData,
-  sampleWithFullData,
-} from '../ws-requests-state-json.test-samples';
+import { sampleWithFullData, sampleWithPartialData, sampleWithRequiredData } from '../ws-requests-state-json.test-samples';
 
-import { WsRequestsStateJSONService, RestWsRequestsStateJSON } from './ws-requests-state-json.service';
+import { RestWsRequestsStateJSON, WsRequestsStateJSONService } from './ws-requests-state-json.service';
 
 const requireRestSample: RestWsRequestsStateJSON = {
   ...sampleWithRequiredData,
@@ -42,43 +37,6 @@ describe('WsRequestsStateJSON Service', () => {
       expect(expectedResult).toMatchObject(expected);
     });
 
-    it('should create a WsRequestsStateJSON', () => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const wsRequestsStateJSON = { ...sampleWithNewData };
-      const returnedFromService = { ...requireRestSample };
-      const expected = { ...sampleWithRequiredData };
-
-      service.create(wsRequestsStateJSON).subscribe(resp => (expectedResult = resp.body));
-
-      const req = httpMock.expectOne({ method: 'POST' });
-      req.flush(returnedFromService);
-      expect(expectedResult).toMatchObject(expected);
-    });
-
-    it('should update a WsRequestsStateJSON', () => {
-      const wsRequestsStateJSON = { ...sampleWithRequiredData };
-      const returnedFromService = { ...requireRestSample };
-      const expected = { ...sampleWithRequiredData };
-
-      service.update(wsRequestsStateJSON).subscribe(resp => (expectedResult = resp.body));
-
-      const req = httpMock.expectOne({ method: 'PUT' });
-      req.flush(returnedFromService);
-      expect(expectedResult).toMatchObject(expected);
-    });
-
-    it('should partial update a WsRequestsStateJSON', () => {
-      const patchObject = { ...sampleWithPartialData };
-      const returnedFromService = { ...requireRestSample };
-      const expected = { ...sampleWithRequiredData };
-
-      service.partialUpdate(patchObject).subscribe(resp => (expectedResult = resp.body));
-
-      const req = httpMock.expectOne({ method: 'PATCH' });
-      req.flush(returnedFromService);
-      expect(expectedResult).toMatchObject(expected);
-    });
-
     it('should return a list of WsRequestsStateJSON', () => {
       const returnedFromService = { ...requireRestSample };
 
@@ -90,16 +48,6 @@ describe('WsRequestsStateJSON Service', () => {
       req.flush([returnedFromService]);
       httpMock.verify();
       expect(expectedResult).toMatchObject([expected]);
-    });
-
-    it('should delete a WsRequestsStateJSON', () => {
-      const expected = true;
-
-      service.delete(123).subscribe(resp => (expectedResult = resp.ok));
-
-      const req = httpMock.expectOne({ method: 'DELETE' });
-      req.flush({ status: 200 });
-      expect(expectedResult).toBe(expected);
     });
 
     describe('addWsRequestsStateJSONToCollectionIfMissing', () => {

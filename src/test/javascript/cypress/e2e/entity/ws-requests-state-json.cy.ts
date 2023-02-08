@@ -1,14 +1,4 @@
-import {
-  entityConfirmDeleteButtonSelector,
-  entityCreateButtonSelector,
-  entityCreateCancelButtonSelector,
-  entityCreateSaveButtonSelector,
-  entityDeleteButtonSelector,
-  entityDetailsBackButtonSelector,
-  entityDetailsButtonSelector,
-  entityEditButtonSelector,
-  entityTableSelector,
-} from '../../support/entity';
+import { entityDetailsBackButtonSelector, entityDetailsButtonSelector, entityTableSelector } from '../../support/entity';
 
 describe('WsRequestsStateJSON e2e test', () => {
   const wsRequestsStateJSONPageUrl = '/ws-requests-state-json';
@@ -55,50 +45,15 @@ describe('WsRequestsStateJSON e2e test', () => {
   });
 
   describe('WsRequestsStateJSON page', () => {
-    describe('create button click', () => {
-      beforeEach(() => {
-        cy.visit(wsRequestsStateJSONPageUrl);
-        cy.wait('@entitiesRequest');
-      });
-
-      it('should load create WsRequestsStateJSON page', () => {
-        cy.get(entityCreateButtonSelector).click();
-        cy.url().should('match', new RegExp('/ws-requests-state-json/new$'));
-        cy.getEntityCreateUpdateHeading('WsRequestsStateJSON');
-        cy.get(entityCreateSaveButtonSelector).should('exist');
-        cy.get(entityCreateCancelButtonSelector).click();
-        cy.wait('@entitiesRequest').then(({ response }) => {
-          expect(response.statusCode).to.equal(200);
-        });
-        cy.url().should('match', wsRequestsStateJSONPageUrlPattern);
-      });
-    });
-
     describe('with existing value', () => {
-      beforeEach(() => {
-        cy.authenticatedRequest({
-          method: 'POST',
-          url: '/api/ws-requests-state-jsons',
-          body: wsRequestsStateJSONSample,
-        }).then(({ body }) => {
-          wsRequestsStateJSON = body;
-
-          cy.intercept(
-            {
-              method: 'GET',
-              url: '/api/ws-requests-state-jsons+(?*|)',
-              times: 1,
-            },
-            {
-              statusCode: 200,
-              body: [wsRequestsStateJSON],
-            }
-          ).as('entitiesRequestInternal');
-        });
-
+      beforeEach(function () {
         cy.visit(wsRequestsStateJSONPageUrl);
 
-        cy.wait('@entitiesRequestInternal');
+        cy.wait('@entitiesRequest').then(({ response }) => {
+          if (response.body.length === 0) {
+            this.skip();
+          }
+        });
       });
 
       it('detail button click should load details WsRequestsStateJSON page', () => {
@@ -110,76 +65,6 @@ describe('WsRequestsStateJSON e2e test', () => {
         });
         cy.url().should('match', wsRequestsStateJSONPageUrlPattern);
       });
-
-      it('edit button click should load edit WsRequestsStateJSON page and go back', () => {
-        cy.get(entityEditButtonSelector).first().click();
-        cy.getEntityCreateUpdateHeading('WsRequestsStateJSON');
-        cy.get(entityCreateSaveButtonSelector).should('exist');
-        cy.get(entityCreateCancelButtonSelector).click();
-        cy.wait('@entitiesRequest').then(({ response }) => {
-          expect(response.statusCode).to.equal(200);
-        });
-        cy.url().should('match', wsRequestsStateJSONPageUrlPattern);
-      });
-
-      it('edit button click should load edit WsRequestsStateJSON page and save', () => {
-        cy.get(entityEditButtonSelector).first().click();
-        cy.getEntityCreateUpdateHeading('WsRequestsStateJSON');
-        cy.get(entityCreateSaveButtonSelector).click();
-        cy.wait('@entitiesRequest').then(({ response }) => {
-          expect(response.statusCode).to.equal(200);
-        });
-        cy.url().should('match', wsRequestsStateJSONPageUrlPattern);
-      });
-
-      it('last delete button click should delete instance of WsRequestsStateJSON', () => {
-        cy.get(entityDeleteButtonSelector).last().click();
-        cy.getEntityDeleteDialogHeading('wsRequestsStateJSON').should('exist');
-        cy.get(entityConfirmDeleteButtonSelector).click();
-        cy.wait('@deleteEntityRequest').then(({ response }) => {
-          expect(response.statusCode).to.equal(204);
-        });
-        cy.wait('@entitiesRequest').then(({ response }) => {
-          expect(response.statusCode).to.equal(200);
-        });
-        cy.url().should('match', wsRequestsStateJSONPageUrlPattern);
-
-        wsRequestsStateJSON = undefined;
-      });
-    });
-  });
-
-  describe('new WsRequestsStateJSON page', () => {
-    beforeEach(() => {
-      cy.visit(`${wsRequestsStateJSONPageUrl}`);
-      cy.get(entityCreateButtonSelector).click();
-      cy.getEntityCreateUpdateHeading('WsRequestsStateJSON');
-    });
-
-    it('should create an instance of WsRequestsStateJSON', () => {
-      cy.get(`[data-cy="requestId"]`).type('4133').should('have.value', '4133');
-
-      cy.get(`[data-cy="requestIdx"]`).type('14232').should('have.value', '14232');
-
-      cy.get(`[data-cy="cmdListJson"]`)
-        .type('../fake-data/blob/hipster.txt')
-        .invoke('val')
-        .should('match', new RegExp('../fake-data/blob/hipster.txt'));
-
-      cy.get(`[data-cy="srcSystem"]`).type('matrix unleash').should('have.value', 'matrix unleash');
-
-      cy.get(`[data-cy="created"]`).type('2023-02-07T01:15').blur().should('have.value', '2023-02-07T01:15');
-
-      cy.get(entityCreateSaveButtonSelector).click();
-
-      cy.wait('@postEntityRequest').then(({ response }) => {
-        expect(response.statusCode).to.equal(201);
-        wsRequestsStateJSON = response.body;
-      });
-      cy.wait('@entitiesRequest').then(({ response }) => {
-        expect(response.statusCode).to.equal(200);
-      });
-      cy.url().should('match', wsRequestsStateJSONPageUrlPattern);
     });
   });
 });

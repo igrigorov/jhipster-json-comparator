@@ -30,31 +30,6 @@ export class WsRequestsStateJSONService {
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
-  create(wsRequestsStateJSON: NewWsRequestsStateJSON): Observable<EntityResponseType> {
-    const copy = this.convertDateFromClient(wsRequestsStateJSON);
-    return this.http
-      .post<RestWsRequestsStateJSON>(this.resourceUrl, copy, { observe: 'response' })
-      .pipe(map(res => this.convertResponseFromServer(res)));
-  }
-
-  update(wsRequestsStateJSON: IWsRequestsStateJSON): Observable<EntityResponseType> {
-    const copy = this.convertDateFromClient(wsRequestsStateJSON);
-    return this.http
-      .put<RestWsRequestsStateJSON>(`${this.resourceUrl}/${this.getWsRequestsStateJSONIdentifier(wsRequestsStateJSON)}`, copy, {
-        observe: 'response',
-      })
-      .pipe(map(res => this.convertResponseFromServer(res)));
-  }
-
-  partialUpdate(wsRequestsStateJSON: PartialUpdateWsRequestsStateJSON): Observable<EntityResponseType> {
-    const copy = this.convertDateFromClient(wsRequestsStateJSON);
-    return this.http
-      .patch<RestWsRequestsStateJSON>(`${this.resourceUrl}/${this.getWsRequestsStateJSONIdentifier(wsRequestsStateJSON)}`, copy, {
-        observe: 'response',
-      })
-      .pipe(map(res => this.convertResponseFromServer(res)));
-  }
-
   find(id: number): Observable<EntityResponseType> {
     return this.http
       .get<RestWsRequestsStateJSON>(`${this.resourceUrl}/${id}`, { observe: 'response' })
@@ -66,10 +41,6 @@ export class WsRequestsStateJSONService {
     return this.http
       .get<RestWsRequestsStateJSON[]>(this.resourceUrl, { params: options, observe: 'response' })
       .pipe(map(res => this.convertResponseArrayFromServer(res)));
-  }
-
-  delete(id: number): Observable<HttpResponse<{}>> {
-    return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
   getWsRequestsStateJSONIdentifier(wsRequestsStateJSON: Pick<IWsRequestsStateJSON, 'id'>): number {

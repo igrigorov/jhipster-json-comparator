@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, ParamMap, Router } from '@angular/router';
-import { combineLatest, filter, Observable, switchMap, tap } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { combineLatest, Observable, switchMap, tap } from 'rxjs';
 
 import { IWsRequestsStateJSON } from '../ws-requests-state-json.model';
-import { ASC, DESC, SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/config/navigation.constants';
+import { ASC, DEFAULT_SORT_DATA, DESC, SORT } from 'app/config/navigation.constants';
 import { EntityArrayResponseType, WsRequestsStateJSONService } from '../service/ws-requests-state-json.service';
-import { WsRequestsStateJSONDeleteDialogComponent } from '../delete/ws-requests-state-json-delete-dialog.component';
 import { DataUtils } from 'app/core/util/data-util.service';
 import { SortService } from 'app/shared/sort/sort.service';
 
@@ -26,8 +24,7 @@ export class WsRequestsStateJSONComponent implements OnInit {
     protected activatedRoute: ActivatedRoute,
     public router: Router,
     protected sortService: SortService,
-    protected dataUtils: DataUtils,
-    protected modalService: NgbModal
+    protected dataUtils: DataUtils
   ) {}
 
   trackId = (_index: number, item: IWsRequestsStateJSON): number => this.wsRequestsStateJSONService.getWsRequestsStateJSONIdentifier(item);
@@ -42,22 +39,6 @@ export class WsRequestsStateJSONComponent implements OnInit {
 
   openFile(base64String: string, contentType: string | null | undefined): void {
     return this.dataUtils.openFile(base64String, contentType);
-  }
-
-  delete(wsRequestsStateJSON: IWsRequestsStateJSON): void {
-    const modalRef = this.modalService.open(WsRequestsStateJSONDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
-    modalRef.componentInstance.wsRequestsStateJSON = wsRequestsStateJSON;
-    // unsubscribe not needed because closed completes on modal close
-    modalRef.closed
-      .pipe(
-        filter(reason => reason === ITEM_DELETED_EVENT),
-        switchMap(() => this.loadFromBackendWithRouteInformations())
-      )
-      .subscribe({
-        next: (res: EntityArrayResponseType) => {
-          this.onResponseSuccess(res);
-        },
-      });
   }
 
   load(): void {

@@ -31,7 +31,7 @@
   "jpaMetamodelFiltering": false,
   "name": "WsRequestsStateJSON",
   "pagination": "no",
-  "readOnly": false,
+  "readOnly": true,
   "relationships": [],
   "service": "no"
 }
