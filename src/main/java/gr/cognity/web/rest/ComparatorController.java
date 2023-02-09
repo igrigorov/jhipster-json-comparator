@@ -2,7 +2,9 @@ package gr.cognity.web.rest;
 
 import gr.cognity.service.WorkflowCompareService;
 import gr.cognity.service.dto.ComPair;
-import gr.cognity.service.dto.CompareResult;
+import gr.cognity.service.dto.CompareResponse;
+import java.util.Collections;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +32,7 @@ public class ComparatorController {
     private final WorkflowCompareService workflowCompareService;
 
     @PostMapping("/compare-single")
-    public CompareResult singleCompare(@RequestBody ComPair input) {
-        return workflowCompareService.singleCompare(input);
+    public List<CompareResponse> singleCompare(@RequestBody ComPair input) {
+        return Collections.singletonList(workflowCompareService.singleCompare(input));
     }
 }

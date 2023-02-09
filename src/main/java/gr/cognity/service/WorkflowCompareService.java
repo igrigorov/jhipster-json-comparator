@@ -4,7 +4,7 @@ import gr.cognity.domain.WsRequestsStateJSON;
 import gr.cognity.exception.ComparisonException;
 import gr.cognity.repository.WsRequestsStateJSONRepository;
 import gr.cognity.service.dto.ComPair;
-import gr.cognity.service.dto.CompareResult;
+import gr.cognity.service.dto.CompareResponse;
 import java.util.Arrays;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -30,14 +30,15 @@ public class WorkflowCompareService {
      */
     private final CompareJsonService compareJsonService;
 
-    public CompareResult singleCompare(ComPair input) {
-        var pfx = "singleCompare[%d.%d]: ".formatted(input.requestId(), input.requestIdx());
+    public CompareResponse singleCompare(ComPair input) {
+        var requestId = input.requestId();
+        var pfx = "singleCompare[%d.%d]: ".formatted(requestId, input.requestIdx());
         LOG.info("{}Start with input: {}", pfx, input);
 
         var idx = input.requestIdx() == null ? 1 : input.requestIdx();
 
         var dbRequests = requestsRepository.findByRequestIdAndRequestIdxAndSrcSystemIn(
-            input.requestId(),
+            requestId,
             idx,
             Arrays.asList(input.system1(), input.system2())
         );
@@ -48,6 +49,6 @@ public class WorkflowCompareService {
             "Invalid number of dbRequests found in DB: expected 2, found " + dbRequests.size()
         );
 
-        return compareJsonService.compare(dbRequests.get(0), dbRequests.get(1));
+        return new CompareResponse(requestId, idx, compareJsonService.compare(dbRequests.get(0), dbRequests.get(1)));
     }
 }

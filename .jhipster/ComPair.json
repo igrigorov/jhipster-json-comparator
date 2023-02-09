@@ -1,0 +1,33 @@
+{
+	"applications": "*",
+	"changelogDate": "20230209140440",
+	"dto": "no",
+	"embedded": false,
+	"entityTableName": "com_pair",
+	"fields": [
+		{
+			"fieldName": "requestId",
+			"fieldType": "Long"
+		},
+		{
+			"fieldName": "requestIdx",
+			"fieldType": "Integer"
+		},
+		{
+			"fieldName": "system1",
+			"fieldType": "String"
+		},
+		{
+			"fieldName": "system2",
+			"fieldType": "String"
+		}
+	],
+	"fluentMethods": true,
+	"jpaMetamodelFiltering": false,
+	"name": "ComPair",
+	"pagination": "no",
+	"readOnly": false,
+	"relationships": [],
+	"service": "no",
+	"skipServer": true
+}

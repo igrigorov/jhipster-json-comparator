@@ -59,6 +59,7 @@ public class CompareJsonService implements CompareService {
         List<String> diffs;
 
         try {
+            // TODO ::: 2023-02-09 IG : set up to ignore dates etc.
             var jacksonMapper = new ObjectMapper();
             JsonNode expectedJson = jacksonMapper.readTree(jsonInput1);
             JsonNode actualJson = jacksonMapper.readTree(jsonInput2);
@@ -68,6 +69,6 @@ public class CompareJsonService implements CompareService {
             throw new ComparisonException("Error comparing requests", e);
         }
 
-        return new CompareResult(0, "OK", diffs);
+        if (diffs.size() == 0) return new CompareResult(0, "OK", diffs); else return new CompareResult(1, "DIFF", diffs);
     }
 }

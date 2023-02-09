@@ -1,10 +1,17 @@
+	@readOnly
+	entity WsRequestsStateJSON {
+		requestId Long
+		requestIdx Integer
+		cmdListJson TextBlob
+		srcSystem String
+		created Instant
+	}
 
-@readOnly
-entity WsRequestsStateJSON {
-	requestId Long
-	requestIdx Integer
-    cmdListJson TextBlob
-    srcSystem String
-    created Instant
-}
+		@skipServer
+	entity ComPair {
+		requestId Long
+		requestIdx Integer
+		system1 String
+		system2 String
+	}
 
