@@ -1,0 +1,28 @@
+{
+  "responseComparatorApp": {
+    "comPair": {
+      "home": {
+        "title": "Com Pairs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Com Pair",
+        "compareSingleRequest": "Compare Single Request",
+        "notFound": "No Com Pairs found"
+      },
+      "created": "A new Com Pair is created with identifier {{ param }}",
+      "updated": "A Com Pair is updated with identifier {{ param }}",
+      "deleted": "A Com Pair is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Com Pair {{ id }}?"
+      },
+      "detail": {
+        "title": "Com Pair"
+      },
+      "id": "ID",
+      "requestId": "Request Id",
+      "requestIdx": "Request Idx",
+      "system1": "System 1",
+      "system2": "System 2",
+      "result": "Result"
+    }
+  }
+}

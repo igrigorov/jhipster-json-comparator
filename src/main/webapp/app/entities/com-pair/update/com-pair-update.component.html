@@ -1,0 +1,65 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form (ngSubmit)="compare()" [formGroup]="editForm" name="editForm" novalidate role="form">
+      <h2
+        data-cy="ComPairCreateUpdateHeading"
+        id="jhi-com-pair-heading"
+        jhiTranslate="responseComparatorApp.comPair.home.compareSingleRequest"
+      >
+        Compare Single Request
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div *ngIf="editForm.controls.id.value !== null" class="row mb-3">
+          <label class="form-label" for="field_id" jhiTranslate="global.field.id">ID</label>
+          <input [readonly]="true" class="form-control" data-cy="id" formControlName="id" id="field_id" name="id" type="number" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_requestId" jhiTranslate="responseComparatorApp.comPair.requestId">Request Id</label>
+          <input class="form-control" data-cy="requestId" formControlName="requestId" id="field_requestId" name="requestId" type="number" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_requestIdx" jhiTranslate="responseComparatorApp.comPair.requestIdx">Request Idx</label>
+          <input
+            class="form-control"
+            data-cy="requestIdx"
+            formControlName="requestIdx"
+            id="field_requestIdx"
+            name="requestIdx"
+            type="number"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_system1" jhiTranslate="responseComparatorApp.comPair.system1">System 1</label>
+          <input class="form-control" data-cy="system1" formControlName="system1" id="field_system1" name="system1" type="text" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_system2" jhiTranslate="responseComparatorApp.comPair.system2">System 2</label>
+          <input class="form-control" data-cy="system2" formControlName="system2" id="field_system2" name="system2" type="text" />
+        </div>
+      </div>
+
+      <div>
+        <button (click)="previousState()" class="btn btn-secondary" data-cy="entityCreateCancelButton" id="cancel-save" type="button">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+          data-cy="entityCreateSaveButton"
+          id="save-entity"
+          type="submit"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="responseComparatorApp.comPair.detail.title">Compare</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

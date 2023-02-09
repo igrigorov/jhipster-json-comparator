@@ -1,0 +1,64 @@
+<div>
+  <h2 data-cy="ComPairHeading" id="page-heading">
+    <span jhiTranslate="responseComparatorApp.comPair.home.title">Com Pairs</span>
+
+    <div class="d-flex justify-content-end">
+      <button (click)="load()" [disabled]="isLoading" class="btn btn-info me-2">
+        <fa-icon [spin]="isLoading" icon="sync"></fa-icon>
+        <span jhiTranslate="responseComparatorApp.comPair.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        [routerLink]="['/com-pair/new']"
+        class="btn btn-primary jh-create-entity create-com-pair"
+        data-cy="entityCreateButton"
+        id="jh-create-entity"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="responseComparatorApp.comPair.home.compareSingleRequest">Compare Single Request</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div *ngIf="compareResponses?.length === 0" class="alert alert-warning" id="no-result">
+    <span jhiTranslate="responseComparatorApp.comPair.home.notFound">No Com Pairs found</span>
+  </div>
+
+  <div *ngIf="compareResponses && compareResponses.length > 0" class="table-responsive table-entities" id="entities">
+    <table aria-describedby="page-heading" class="table table-striped">
+      <thead>
+        <tr (sortChange)="navigateToWithComponentValues()" [(ascending)]="ascending" [(predicate)]="predicate" jhiSort>
+          <th jhiSortBy="requestId" scope="col">
+            <div class="d-flex">
+              <span jhiTranslate="responseComparatorApp.comPair.requestId">Request Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th jhiSortBy="requestIdx" scope="col">
+            <div class="d-flex">
+              <span jhiTranslate="responseComparatorApp.comPair.requestIdx">Request Idx</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th jhiSortBy="result" scope="col">
+            <div class="d-flex">
+              <span jhiTranslate="responseComparatorApp.comPair.result">Result</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let compareResponse of compareResponses; trackBy: trackId" data-cy="entityTable">
+          <td>{{ compareResponse.requestId }}</td>
+          <td>{{ compareResponse.requestIdx }}</td>
+          <td>{{ compareResponse.response }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
