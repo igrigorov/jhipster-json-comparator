@@ -64,6 +64,7 @@
 		<lombok.version>1.18.26</lombok.version>
 		<zjsonpatch.version>0.4.14</zjsonpatch.version>
 		<json.compare.version>6.7</json.compare.version>
+		<opencsv.version>5.6</opencsv.version>
 
 		<!-- Plugin versions -->
 		<maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>
@@ -85,17 +86,17 @@
         <checksum-maven-plugin.version>1.11</checksum-maven-plugin.version>
         <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
         <git-commit-id-plugin.version>5.0.0</git-commit-id-plugin.version>
-        <modernizer-maven-plugin.version>2.4.0</modernizer-maven-plugin.version>
-        <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
-        <jib-maven-plugin.version>3.2.1</jib-maven-plugin.version>
-        <jib-maven-plugin.image>eclipse-temurin:11-jre-focal</jib-maven-plugin.image>
-        <jib-maven-plugin.architecture>amd64</jib-maven-plugin.architecture>
-        <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
-        <properties-maven-plugin.version>1.1.0</properties-maven-plugin.version>
-        <sonar-maven-plugin.version>3.9.1.2184</sonar-maven-plugin.version>
+		<modernizer-maven-plugin.version>2.4.0</modernizer-maven-plugin.version>
+		<jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
+		<jib-maven-plugin.version>3.2.1</jib-maven-plugin.version>
+		<jib-maven-plugin.image>eclipse-temurin:11-jre-focal</jib-maven-plugin.image>
+		<jib-maven-plugin.architecture>amd64</jib-maven-plugin.architecture>
+		<lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
+		<properties-maven-plugin.version>1.1.0</properties-maven-plugin.version>
+		<sonar-maven-plugin.version>3.9.1.2184</sonar-maven-plugin.version>
 
-        <!-- jhipster-needle-maven-property -->
-    </properties>
+		<!-- jhipster-needle-maven-property -->
+	</properties>
 
     <dependencyManagement>
         <dependencies>
@@ -356,6 +357,12 @@
 			<groupId>com.github.fslev</groupId>
 			<artifactId>json-compare</artifactId>
 			<version>${json.compare.version}</version>
+		</dependency>
+		<!-- OpenCSV for parsing -->
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>${opencsv.version}</version>
 		</dependency>
 
 		<!-- jhipster-needle-maven-add-dependency -->
