@@ -1,26 +1,20 @@
-# EditorConfig helps developers define and maintain consistent
-# coding styles between different editors and IDEs
-# editorconfig.org
-
-root = true
-
 [*]
-
-# We recommend you to keep these unchanged
-end_of_line = lf
 charset = utf-8
-trim_trailing_whitespace = true
-insert_final_newline = true
-
-# Change these settings to your own preference
-indent_style = tab
+end_of_line = lf
 indent_size = 4
+indent_style = tab
+insert_final_newline = true
+max_line_length = 140
+tab_width = 4
+ij_continuation_indent_size = 8
+ij_formatter_off_tag = @formatter:off
+ij_formatter_on_tag = @formatter:on
+ij_formatter_tags_enabled = true
+ij_smart_tabs = false
+ij_visual_guides = none
+ij_wrap_on_typing = false
 
 [*.yml]
+indent_style = space
 indent_size = 2
 
-[*.{ts,tsx,js,jsx,json,css,scss,html,vue}]
-indent_size = 4
-
-[*.md]
-trim_trailing_whitespace = false
