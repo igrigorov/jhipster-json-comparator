@@ -16,15 +16,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public final class ComPair {
 
-    @CsvBindByName(column = "requestId", required = true)
-    private Long requestId;
+	@CsvBindByName(column = "requestId", required = true)
+	private Long requestId;
 
-    @CsvBindByName(column = "requestIdx", required = true)
-    private Integer requestIdx;
+	@CsvBindByName(column = "requestIdx", required = true)
+	private Integer requestIdx;
 
-    @CsvBindByName(column = "system1", required = true)
-    private String system1;
+	@CsvBindByName(column = "system1", required = true)
+	private String system1;
 
-    @CsvBindByName(column = "system2", required = true)
-    private String system2;
+	@CsvBindByName(column = "system2", required = true)
+	private String system2;
 }

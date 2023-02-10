@@ -8,14 +8,14 @@ import java.io.Serial;
  */
 public class ComparisonException extends RuntimeException {
 
-    @Serial
-    private static final long serialVersionUID = 1L;
+	@Serial
+	private static final long serialVersionUID = 1L;
 
-    public ComparisonException(String message) {
-        super(message);
-    }
+	public ComparisonException(String message) {
+		super(message);
+	}
 
-    public ComparisonException(String message, Exception x) {
-        super(message, x);
-    }
+	public ComparisonException(String message, Exception x) {
+		super(message, x);
+	}
 }

@@ -8,7 +8,7 @@ import java.lang.module.ResolutionException;
  */
 public class CsvParseException extends ResolutionException {
 
-    public CsvParseException(String message, Throwable re) {
-        super(message, re);
-    }
+	public CsvParseException(String message, Throwable re) {
+		super(message, re);
+	}
 }

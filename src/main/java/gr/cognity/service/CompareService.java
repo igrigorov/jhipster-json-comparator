@@ -7,5 +7,5 @@ import gr.cognity.service.dto.CompareResult;
  * @version 2023.02.08
  */
 public interface CompareService {
-    CompareResult compare(String input1, String input2);
+	CompareResult compare(String input1, String input2);
 }

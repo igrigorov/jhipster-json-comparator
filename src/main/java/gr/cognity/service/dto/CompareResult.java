@@ -6,4 +6,5 @@ package gr.cognity.service.dto;
  * @author Ivan Grigorov
  * @version 2023.02.08
  */
-public record CompareResult(Integer code, String message, java.util.List<String> diff) {}
+public record CompareResult(Integer code, String message, java.util.List<String> diff) {
+}
