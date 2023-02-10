@@ -9,7 +9,7 @@ import { IComPair, ICompareResponse, NewComPair } from '../com-pair.model';
 
 export type PartialUpdateComPair = Partial<IComPair> & Pick<IComPair, 'id'>;
 
-export type EntityResponseType = HttpResponse<IComPair>;
+export type EntityResponseType = HttpResponse<ICompareResponse>;
 export type EntityArrayResponseType = HttpResponse<ICompareResponse[]>;
 
 @Injectable({ providedIn: 'root' })
@@ -18,29 +18,13 @@ export class ComPairService {
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
-  compare(comPair: NewComPair): Observable<EntityResponseType> {
-    return this.http.post<IComPair>(this.resourceUrl, comPair, { observe: 'response' });
-  }
-
-  update(comPair: IComPair): Observable<EntityResponseType> {
-    return this.http.put<IComPair>(`${this.resourceUrl}/${this.getComPairIdentifier(comPair)}`, comPair, { observe: 'response' });
-  }
-
-  partialUpdate(comPair: PartialUpdateComPair): Observable<EntityResponseType> {
-    return this.http.patch<IComPair>(`${this.resourceUrl}/${this.getComPairIdentifier(comPair)}`, comPair, { observe: 'response' });
-  }
-
-  find(id: number): Observable<EntityResponseType> {
-    return this.http.get<IComPair>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  compare(comPair: NewComPair): Observable<EntityArrayResponseType> {
+    return this.http.post<ICompareResponse[]>(this.resourceUrl, comPair, { observe: 'response' });
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<ICompareResponse[]>(this.resourceUrl, { params: options, observe: 'response' });
-  }
-
-  delete(id: number): Observable<HttpResponse<{}>> {
-    return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
   getComPairIdentifier(comPair: Pick<IComPair, 'id'>): number {

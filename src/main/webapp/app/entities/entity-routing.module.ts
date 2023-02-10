@@ -14,6 +14,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'responseComparatorApp.comPair.home.title' },
         loadChildren: () => import('./com-pair/com-pair.module').then(m => m.ComPairModule),
       },
+      {
+        path: 'bulk-compare',
+        data: { pageTitle: 'BulkCompare' },
+        loadChildren: () => import('./bulk-compare/bulk-compare.module').then(m => m.BulkCompareModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

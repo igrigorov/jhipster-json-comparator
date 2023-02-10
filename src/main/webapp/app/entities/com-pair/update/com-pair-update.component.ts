@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
 import { ComPairFormGroup, ComPairFormService } from './com-pair-form.service';
-import { IComPair } from '../com-pair.model';
+import { IComPair, ICompareResponse } from '../com-pair.model';
 import { ComPairService } from '../service/com-pair.service';
 
 @Component({
@@ -40,14 +40,10 @@ export class ComPairUpdateComponent implements OnInit {
   compare(): void {
     this.isSaving = true;
     const comPair = this.comPairFormService.getComPair(this.editForm);
-    if (comPair.id !== null) {
-      this.subscribeToSaveResponse(this.comPairService.update(comPair));
-    } else {
-      this.subscribeToSaveResponse(this.comPairService.compare(comPair));
-    }
+    this.subscribeToSaveResponse(this.comPairService.compare(comPair));
   }
 
-  protected subscribeToSaveResponse(result: Observable<HttpResponse<IComPair>>): void {
+  protected subscribeToSaveResponse(result: Observable<HttpResponse<ICompareResponse[]>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),
       error: () => this.onSaveError(),

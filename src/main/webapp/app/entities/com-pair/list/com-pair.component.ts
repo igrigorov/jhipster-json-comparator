@@ -32,11 +32,11 @@ export class ComPairComponent implements OnInit {
   }
 
   load(): void {
-    this.loadFromBackendWithRouteInformations().subscribe({
-      next: (res: EntityArrayResponseType) => {
-        this.onResponseSuccess(res);
-      },
-    });
+    // this.loadFromBackendWithRouteInformations().subscribe({
+    //   next: (res: EntityArrayResponseType) => {
+    //     this.onResponseSuccess(res);
+    //   },
+    // });
   }
 
   navigateToWithComponentValues(): void {

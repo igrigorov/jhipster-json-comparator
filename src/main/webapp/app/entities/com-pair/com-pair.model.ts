@@ -17,5 +17,5 @@ interface ICompareResult {
 export interface ICompareResponse {
   requestId: number;
   requestIdx?: number | null;
-  response?: ICompareResult[] | null;
+  response?: ICompareResult | null;
 }

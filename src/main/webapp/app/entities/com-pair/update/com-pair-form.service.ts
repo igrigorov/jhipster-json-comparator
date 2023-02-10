@@ -48,8 +48,8 @@ export class ComPairFormService {
     });
   }
 
-  getComPair(form: ComPairFormGroup): IComPair | NewComPair {
-    return form.getRawValue() as IComPair | NewComPair;
+  getComPair(form: ComPairFormGroup): NewComPair {
+    return form.getRawValue() as NewComPair;
   }
 
   resetForm(form: ComPairFormGroup, comPair: ComPairFormGroupInput): void {

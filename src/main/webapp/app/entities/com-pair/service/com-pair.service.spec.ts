@@ -49,30 +49,6 @@ describe('ComPair Service', () => {
       expect(expectedResult).toMatchObject(expected);
     });
 
-    it('should update a ComPair', () => {
-      const comPair = { ...sampleWithRequiredData };
-      const returnedFromService = { ...requireRestSample };
-      const expected = { ...sampleWithRequiredData };
-
-      service.update(comPair).subscribe(resp => (expectedResult = resp.body));
-
-      const req = httpMock.expectOne({ method: 'PUT' });
-      req.flush(returnedFromService);
-      expect(expectedResult).toMatchObject(expected);
-    });
-
-    it('should partial update a ComPair', () => {
-      const patchObject = { ...sampleWithPartialData };
-      const returnedFromService = { ...requireRestSample };
-      const expected = { ...sampleWithRequiredData };
-
-      service.partialUpdate(patchObject).subscribe(resp => (expectedResult = resp.body));
-
-      const req = httpMock.expectOne({ method: 'PATCH' });
-      req.flush(returnedFromService);
-      expect(expectedResult).toMatchObject(expected);
-    });
-
     it('should return a list of ComPair', () => {
       const returnedFromService = { ...requireRestSample };
 
@@ -84,16 +60,6 @@ describe('ComPair Service', () => {
       req.flush([returnedFromService]);
       httpMock.verify();
       expect(expectedResult).toMatchObject([expected]);
-    });
-
-    it('should delete a ComPair', () => {
-      const expected = true;
-
-      service.delete(123).subscribe(resp => (expectedResult = resp.ok));
-
-      const req = httpMock.expectOne({ method: 'DELETE' });
-      req.flush({ status: 200 });
-      expect(expectedResult).toBe(expected);
     });
 
     describe('addComPairToCollectionIfMissing', () => {

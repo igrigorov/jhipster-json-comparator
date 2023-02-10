@@ -1,0 +1,209 @@
+<div>
+  <h2 data-cy="BulkCompareHeading" id="page-heading">
+    <span>Bulk Compares</span>
+
+    <!--    <div class="d-flex justify-content-end">-->
+    <!--      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">-->
+    <!--        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>-->
+    <!--        <span>Refresh List</span>-->
+    <!--      </button>-->
+    <!--    </div>-->
+  </h2>
+  <!--<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#fff" type="square-jelly-box" [fullScreen]="false">-->
+  <!--  <p style="color: white">Please wait...</p>-->
+  <!--</ngx-spinner>-->
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <!--  <div class="alert alert-warning" id="no-result" *ngIf="bulkCompares?.length === 0">-->
+  <!--    <span>No bulkCompares found</span>-->
+  <!--  </div>-->
+
+  <div class="row">
+    <div class="col-12 col-md-12 col-sm-12 col-xs-12 doNotPrint">
+      <div class="card jh-card">
+        <div class="card-body">
+          <h4 class="card-title">Bulk Compare Form</h4>
+          <div class="callout callout-info">
+            <div class="row">
+              <!--<div class="col col-xs col-sm-1 col-md-1 helpTips-parent">
+							  <fa-icon [icon]="['fas', 'info-circle']" class="fa-3x helpTips"></fa-icon>
+							</div>-->
+              <div class="col-12 col-xs-12 col-sm-11 col-md-11">
+                <h5>Help Tips!</h5>
+                <p>Upload a <strong>.csv</strong> file that contains records to compare in this format:</p>
+                <p>
+                  endpoint1;endpoint2;request1;request2;soapAction<br />
+                  endpoint1;endpoint2;request1;request2;soapAction<br />
+                  endpoint1;endpoint2;request1;request2;soapAction<br />
+                </p>
+                <hr />
+                <p>
+                  request2 and soapAction can be omitted.<br />
+                  examples:<br />
+                  endpoint1;endpoint2;request1;;<br />
+                  endpoint1;endpoint2;request1;request2;<br />
+                  endpoint1;endpoint2;request1;;soapAction<br />
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <form [formGroup]="bulkCompareForm">
+                <div class="form-group">
+                  <label class="attachment" for="fileField">
+                    <div class="row btn-file">
+                      <div class="btn-file__preview"></div>
+                      <div class="btn-file__actions">
+                        <div class="btn-file__actions__item col-xs-12 text-center">
+                          <div class="btn-file__actions__item--shadow">
+                            <div class="visible-xs-block"></div>
+                            <span *ngIf="fileName == ''">
+                              <fa-icon [fixedWidth]="true" icon="plus" size="lg"></fa-icon> Select file to upload
+                            </span>
+                            <!--  TODO ::: 2023-02-10 IG : find the 'fas' icons -->
+                            <span *ngIf="fileName != ''">
+                              <fa-icon [fixedWidth]="true" icon="file-code" size="lg"></fa-icon>
+                              {{ fileName }}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <input
+                      (change)="showFileName($event)"
+                      aria-label="File upload"
+                      class="form-control"
+                      formControlName="bulkCompareFile"
+                      id="fileField"
+                      name="file"
+                      required="required"
+                      type="file"
+                    />
+                  </label>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <button (click)="resetForm()" class="btn btn-primary">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-12 col-sm-12 col-xs-12 doNotPrint">
+      <div class="card jh-card">
+        <button (click)="submitBulkCompare()" [disabled]="bulkCompareForm.invalid" class="btn btn-success" type="button">
+          <!--<fa-icon [icon]="['fas', 'upload']"></fa-icon>-->
+          Upload
+        </button>
+      </div>
+    </div>
+    <div *ngIf="response != undefined" class="col-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card jh-card">
+        <div class="card-body">
+          <h4 class="card-title">Compare Report</h4>
+          <div class="btn-toolbar mt-4 mb-4 doNotPrint" role="toolbar">
+            <div aria-label="First group" class="btn-group mr-2" role="group">
+              <button (click)="acc.expandAll()" class="btn btn-outline-primary" type="button">
+                <fa-icon icon="expand"></fa-icon>
+                Expand all
+              </button>
+            </div>
+            <div aria-label="Second group" class="btn-group mr-2" role="group">
+              <button (click)="acc.collapseAll()" class="btn btn-outline-primary" type="button">
+                <fa-icon icon="compress-arrows-alt"></fa-icon>
+                Collapse all
+              </button>
+            </div>
+            <div aria-label="Third group" class="btn-group" role="group">
+              <button (click)="acc.expandAll(); print()" class="btn btn-primary" type="button">
+                <fa-icon icon="save"></fa-icon>
+                Save Report
+              </button>
+            </div>
+          </div>
+          <div class="row"></div>
+          <ngb-accordion #acc="ngbAccordion">
+            <ngb-panel *ngFor="let line of response; let i = index">
+              <ng-template ngbPanelTitle>
+                <!--<h5 *ngIf="line.result != ''">-->
+                <!--  Line {{ i + 1 }}. <fa-icon icon="balance-scale-left" [fixedWidth]="true"></fa-icon> Comparison Result:-->
+
+                <!--  <span *ngIf="line.result == 'SIMILAR'" class="badge badge-warning">-->
+                <!--    {{ line.result }}-->
+                <!--  </span>-->
+                <!--  <span *ngIf="line.result == 'DIFFERENT'" class="badge badge-danger">-->
+                <!--    {{ line.result }}-->
+                <!--  </span>-->
+                <!--  <span *ngIf="line.result == 'IDENTICAL'" class="badge badge-success">-->
+                <!--    {{ line.result }}-->
+                <!--  </span>-->
+                <!--  <span *ngIf="line.result == 'ERROR'" class="badge badge-danger">-->
+                <!--    {{ line.result }}-->
+                <!--  </span>-->
+                <!--</h5>-->
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <!--<table-->
+                <!--  class="table table-responsive table-borderless table-striped"-->
+                <!--  *ngIf="line.result == 'ERROR' && line.hasDifferences && line.differences.length > 0"-->
+                <!--&gt;-->
+                <!--  <thead>-->
+                <!--    <tr>-->
+                <!--      <th>Error Description</th>-->
+                <!--    </tr>-->
+                <!--  </thead>-->
+                <!--  <tbody>-->
+                <!--    <tr *ngFor="let difference of line.differences; let i = index">-->
+                <!--      <td>-->
+                <!--        <b>{{ difference.description }}</b>-->
+                <!--      </td>-->
+                <!--    </tr>-->
+                <!--  </tbody>-->
+                <!--</table>-->
+                <!--<table-->
+                <!--  class="table table-responsive table-borderless table-striped"-->
+                <!--  *ngIf="line.result != 'ERROR' && line.hasDifferences && line.differences.length > 0"-->
+                <!--&gt;-->
+                <!--  <thead>-->
+                <!--    <tr>-->
+                <!--      <th>#</th>-->
+                <!--      <th>Similarity Type</th>-->
+                <!--      <th>Comparison Type</th>-->
+                <!--      <th>Description</th>-->
+                <!--    </tr>-->
+                <!--  </thead>-->
+                <!--  <tbody>-->
+                <!--    <tr *ngFor="let difference of line.differences; let i = index">-->
+                <!--      <td>-->
+                <!--        <b>{{ i + 1 }}</b>-->
+                <!--      </td>-->
+                <!--      <td>-->
+                <!--        <span *ngIf="difference.similarityType == 'SIMILAR'" class="badge badge-warning">-->
+                <!--          {{ difference.similarityType }}-->
+                <!--        </span>-->
+                <!--        <span *ngIf="difference.similarityType == 'DIFFERENT'" class="badge badge-danger">-->
+                <!--          {{ difference.similarityType }}-->
+                <!--        </span>-->
+                <!--        <span *ngIf="difference.similarityType == 'IDENTICAL'" class="badge badge-success">-->
+                <!--          {{ difference.similarityType }}-->
+                <!--        </span>-->
+                <!--      </td>-->
+                <!--      <td>{{ difference.comparisonType }}</td>-->
+                <!--      <td>{{ difference.description | json }}</td>-->
+                <!--    </tr>-->
+                <!--  </tbody>-->
+                <!--</table>-->
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

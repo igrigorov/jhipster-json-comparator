@@ -61,7 +61,6 @@ describe('ComPair Management Update Component', () => {
       const saveSubject = new Subject<HttpResponse<IComPair>>();
       const comPair = { id: 123 };
       jest.spyOn(comPairFormService, 'getComPair').mockReturnValue(comPair);
-      jest.spyOn(comPairService, 'update').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
       activatedRoute.data = of({ comPair });
       comp.ngOnInit();
@@ -75,7 +74,6 @@ describe('ComPair Management Update Component', () => {
       // THEN
       expect(comPairFormService.getComPair).toHaveBeenCalled();
       expect(comp.previousState).toHaveBeenCalled();
-      expect(comPairService.update).toHaveBeenCalledWith(expect.objectContaining(comPair));
       expect(comp.isSaving).toEqual(false);
     });
 
@@ -106,7 +104,6 @@ describe('ComPair Management Update Component', () => {
       // GIVEN
       const saveSubject = new Subject<HttpResponse<IComPair>>();
       const comPair = { id: 123 };
-      jest.spyOn(comPairService, 'update').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
       activatedRoute.data = of({ comPair });
       comp.ngOnInit();
@@ -117,7 +114,6 @@ describe('ComPair Management Update Component', () => {
       saveSubject.error('This is an error!');
 
       // THEN
-      expect(comPairService.update).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
     });
