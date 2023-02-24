@@ -1,6 +1,8 @@
+// custom: imported and exported the icons faInfoCircle and below
 import {
   faArrowLeft,
   faAsterisk,
+  faBalanceScaleLeft,
   faBan,
   faBars,
   faBell,
@@ -9,11 +11,17 @@ import {
   faCheck,
   faCloud,
   faCogs,
+  faCompressArrowsAlt,
   faDatabase,
+  faExpand,
   faEye,
+  faFileAlt,
+  faFileCode,
   faFlag,
   faHeart,
   faHome,
+  faInfoCircle,
+  faLink,
   faList,
   faLock,
   faPencilAlt,
@@ -21,8 +29,9 @@ import {
   faRoad,
   faSave,
   faSearch,
-  faSignOutAlt,
+  faServer,
   faSignInAlt,
+  faSignOutAlt,
   faSort,
   faSortDown,
   faSortUp,
@@ -32,12 +41,12 @@ import {
   faThList,
   faTimes,
   faTrashAlt,
+  faUpload,
   faUser,
   faUserPlus,
   faUsers,
   faUsersCog,
   faWrench,
-  // jhipster-needle-add-icon-import
 } from '@fortawesome/free-solid-svg-icons';
 
 export const fontAwesomeIcons = [
@@ -79,5 +88,14 @@ export const fontAwesomeIcons = [
   faUsers,
   faUsersCog,
   faWrench,
+  faInfoCircle,
+  faUpload,
+  faLink,
+  faFileAlt,
+  faBalanceScaleLeft,
+  faServer,
+  faFileCode,
+  faExpand,
+  faCompressArrowsAlt,
   // jhipster-needle-add-icon-import
 ];

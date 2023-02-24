@@ -48,8 +48,8 @@ export class BulkCompareComponent implements OnInit {
     this.bulkModel = new BulkCompareModel(this.file);
     this.bulkCompareService.sendForm(this.bulkModel).subscribe(data => {
       this.response = data.body!;
-      console.warn('Epistrofes');
-      console.warn(data);
+      console.log('Return data');
+      console.log(data);
       // this.spinnerService.hide();
     });
   }
@@ -76,7 +76,7 @@ export class BulkCompareComponent implements OnInit {
     const totalLines = this.response?.length;
     let succeeded = 0;
     this.response?.forEach(line => {
-      if (line?.response?.code === 0) {
+      if (line?.result?.code === 0) {
         succeeded++;
       }
     });
@@ -88,7 +88,7 @@ export class BulkCompareComponent implements OnInit {
     const totalLines = this.response?.length;
     let failed = 0;
     this.response?.forEach(line => {
-      if (line?.response?.code === 0) {
+      if (line?.result?.code === 0) {
         failed++;
       }
     });
