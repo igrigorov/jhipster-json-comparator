@@ -1,8 +1,8 @@
 package gr.cognity.service;
 
-import gr.cognity.domain.WsRequestsStateJSON;
+import gr.cognity.domainapp.WsRequestsStateJSON;
 import gr.cognity.exception.ComparisonException;
-import gr.cognity.repository.WsRequestsStateJSONRepository;
+import gr.cognity.repositoryapp.WsRequestsStateJSONRepository;
 import gr.cognity.service.dto.ComPair;
 import gr.cognity.service.dto.CompareResponse;
 import lombok.RequiredArgsConstructor;

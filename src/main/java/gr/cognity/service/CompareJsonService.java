@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flipkart.zjsonpatch.JsonDiff;
-import gr.cognity.domain.WsRequestsStateJSON;
+import gr.cognity.domainapp.WsRequestsStateJSON;
 import gr.cognity.exception.ComparisonException;
 import gr.cognity.service.dto.CompareResult;
 import io.json.compare.DefaultJsonComparator;

@@ -1,9 +1,10 @@
 package gr.cognity.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+import gr.cognity.domainapp.WsRequestsStateJSON;
 import gr.cognity.web.rest.TestUtil;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class WsRequestsStateJSONTest {
 

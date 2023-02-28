@@ -1,6 +1,6 @@
-package gr.cognity.repository;
+package gr.cognity.repositoryapp;
 
-import gr.cognity.domain.WsRequestsStateJSON;
+import gr.cognity.domainapp.WsRequestsStateJSON;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

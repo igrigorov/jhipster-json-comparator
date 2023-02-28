@@ -1,7 +1,7 @@
 package gr.cognity.web.rest;
 
-import gr.cognity.domain.WsRequestsStateJSON;
-import gr.cognity.repository.WsRequestsStateJSONRepository;
+import gr.cognity.domainapp.WsRequestsStateJSON;
+import gr.cognity.repositoryapp.WsRequestsStateJSONRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * REST controller for managing {@link gr.cognity.domain.WsRequestsStateJSON}.
+ * REST controller for managing {@link WsRequestsStateJSON}.
  */
 @RestController
 @RequestMapping("/api")

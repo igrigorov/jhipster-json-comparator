@@ -40,6 +40,7 @@
         <run.addResources>false</run.addResources>
         <!-- These remain empty unless the corresponding profile is active -->
         <profile.no-liquibase />
+        <profile.ora/>
         <profile.api-docs />
         <profile.tls />
         <profile.e2e />
@@ -863,21 +864,43 @@
             </plugins>
         </pluginManagement>
     </build>
-    <profiles>
-        <profile>
-            <id>no-liquibase</id>
-            <properties>
-                <profile.no-liquibase>,no-liquibase</profile.no-liquibase>
-            </properties>
-        </profile>
-        <profile>
-            <id>api-docs</id>
-            <properties>
-                <profile.api-docs>,api-docs</profile.api-docs>
-            </properties>
-        </profile>
-        <profile>
-            <id>tls</id>
+	<profiles>
+		<profile>
+			<id>no-liquibase</id>
+			<properties>
+				<profile.no-liquibase>,no-liquibase</profile.no-liquibase>
+			</properties>
+		</profile>
+		<profile>
+			<id>ora</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.testcontainers</groupId>
+					<artifactId>oracle-xe</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.oracle.database.jdbc</groupId>
+					<artifactId>ojdbc8</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>com.oracle.ojdbc</groupId>
+					<artifactId>orai18n</artifactId>
+					<version>19.3.0.0</version>
+				</dependency>
+			</dependencies>
+			<properties>
+				<profile.ora>,ora</profile.ora>
+			</properties>
+		</profile>
+		<profile>
+			<id>api-docs</id>
+			<properties>
+				<profile.api-docs>,api-docs</profile.api-docs>
+			</properties>
+		</profile>
+		<profile>
+			<id>tls</id>
             <properties>
                 <profile.tls>,tls</profile.tls>
             </properties>
@@ -1007,7 +1030,7 @@
             </build>
             <properties>
                 <!-- default Spring profiles -->
-                <spring.profiles.active>dev${profile.no-liquibase}</spring.profiles.active>
+				<spring.profiles.active>dev${profile.no-liquibase}${profile.ora}</spring.profiles.active>
             </properties>
         </profile>
         <profile>
@@ -1078,7 +1101,7 @@
                                 <referenceUrl>hibernate:spring:gr.cognity.domain?dialect=org.hibernate.dialect.H2Dialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
                                 <verbose>true</verbose>
                                 <logging>debug</logging>
-                                <contexts>!test</contexts>
+								<contexts>!test,!no-liquibase</contexts>
                             </configuration>
                             <dependencies>
                                 <dependency>
@@ -1112,7 +1135,7 @@
             </build>
             <properties>
                 <!-- default Spring profiles -->
-                <spring.profiles.active>dev${profile.tls}${profile.no-liquibase}</spring.profiles.active>
+				<spring.profiles.active>dev${profile.tls}${profile.no-liquibase}${profile.ora}</spring.profiles.active>
             </properties>
         </profile>
         <profile>
@@ -1281,7 +1304,8 @@
             </build>
             <properties>
                 <!-- default Spring profiles -->
-                <spring.profiles.active>prod${profile.api-docs}${profile.tls}${profile.e2e}${profile.no-liquibase}</spring.profiles.active>
+				<spring.profiles.active>prod${profile.api-docs}${profile.tls}${profile.e2e}${profile.no-liquibase}${profile.ora}
+				</spring.profiles.active>
             </properties>
         </profile>
         <profile>

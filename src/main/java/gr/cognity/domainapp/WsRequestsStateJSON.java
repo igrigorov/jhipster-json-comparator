@@ -1,4 +1,4 @@
-package gr.cognity.domain;
+package gr.cognity.domainapp;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;

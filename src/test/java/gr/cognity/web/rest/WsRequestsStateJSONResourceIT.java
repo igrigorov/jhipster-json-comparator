@@ -1,17 +1,8 @@
 package gr.cognity.web.rest;
 
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 import gr.cognity.IntegrationTest;
-import gr.cognity.domain.WsRequestsStateJSON;
-import gr.cognity.repository.WsRequestsStateJSONRepository;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.Random;
-import java.util.concurrent.atomic.AtomicLong;
-import javax.persistence.EntityManager;
+import gr.cognity.domainapp.WsRequestsStateJSON;
+import gr.cognity.repositoryapp.WsRequestsStateJSONRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +11,16 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicLong;
+
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * Integration tests for the {@link WsRequestsStateJSONResource} REST controller.

@@ -1,5 +1,6 @@
 package gr.cognity.config;
 
+import gr.cognity.domainapp.WsRequestsStateJSON;
 import org.ehcache.config.builders.CacheConfigurationBuilder;
 import org.ehcache.config.builders.ExpiryPolicyBuilder;
 import org.ehcache.config.builders.ResourcePoolsBuilder;
@@ -50,7 +51,7 @@ public class CacheConfiguration {
 			createCache(cm, gr.cognity.domain.User.class.getName());
 			createCache(cm, gr.cognity.domain.Authority.class.getName());
 			createCache(cm, gr.cognity.domain.User.class.getName() + ".authorities");
-			createCache(cm, gr.cognity.domain.WsRequestsStateJSON.class.getName());
+			createCache(cm, WsRequestsStateJSON.class.getName());
 			// jhipster-needle-ehcache-add-entry
 		};
 	}
